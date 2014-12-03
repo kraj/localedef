@@ -1,5 +1,5 @@
 #ifdef HAVE_LIBINTL_H
-#include_next <libintl.h>
+#include "../intl/libintl.h"
 #endif
 
 #ifndef _
