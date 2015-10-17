@@ -58,7 +58,6 @@ LOCAL_CHECK_FUNC([stpcpy], [#include <string.h>])
 LOCAL_CHECK_FUNC([strsep], [#include <string.h>])
 LOCAL_CHECK_VAR([program_invocation_name], [#include <errno.h>])
 LOCAL_CHECK_VAR([program_invocation_short_name], [#include <errno.h>])
-AC_CHECK_LIB([intl], [gettext])
 AC_CHECK_LIB([posix4], [nanosleep])
 
 # These two macros are taken from GCC's config/acx.m4.
