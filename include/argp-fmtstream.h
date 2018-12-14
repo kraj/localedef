@@ -1,5 +1,7 @@
 #include_next <../argp/argp-fmtstream.h>
 
+#define __vsnprintf_internal(s, l, f, a, b) vsnprintf(s, l, f, a)
+
 #define _IO_fwide_maybe_incompatible (0)
 
 /* A special optimized version of the function above.  It optimizes the
