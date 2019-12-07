@@ -40,6 +40,8 @@ WARNFLAGS	= -Wall -Wno-format
 FULLCC		= $(CC) $(CPPFLAGS) $(CFLAGS) \
 		  $(DEFINES) $(INCLUDES) $(WARNFLAGS)
 
+CROSS_LOCALEDEF_HARDLINK_OBJS = cross-localedef-hardlink.o
+
 LOCALEDEF_OBJS	= charmap.o charmap-dir.o ld-address.o ld-collate.o \
 		  ld-ctype.o ld-identification.o ld-measurement.o \
 		  ld-messages.o ld-monetary.o ld-name.o ld-numeric.o \
@@ -54,10 +56,13 @@ LOCALEDEF_OBJS	= charmap.o charmap-dir.o ld-address.o ld-collate.o \
 		  asprintf.o getdelim.o localedef_extra.o \
 		  obstack_printf.o vasprintf.o
 
-all:		localedef$(EXEEXT)
+all:		localedef$(EXEEXT) cross-localedef-hardlink$(EXEEXT)
 
 localedef$(EXEEXT): $(LOCALEDEF_OBJS)
 		$(CC) -o $@ $(LOCALEDEF_OBJS) $(LIBS)
+
+cross-localedef-hardlink$(EXEEXT): $(CROSS_LOCALEDEF_HARDLINK_OBJS)
+		$(CC) -o $@ $(CROSS_LOCALEDEF_HARDLINK_OBJS) $(LIBS)
 
 clean:
 		rm -f locale$(EXEEXT) $(LOCALEDEF_OBJS)
@@ -77,6 +82,7 @@ clean:
 %.o: $(srcdir)/%.c
 		$(FULLCC) -c -o $@ $<
 
+cross-localedef-hardlink.o: glibc/locale/programs/cross-localedef-hardlink.c
 charmap.o: glibc/locale/programs/charmap.c
 charmap-dir.o: glibc/locale/programs/charmap-dir.c
 ld-address.o: glibc/locale/programs/ld-address.c
