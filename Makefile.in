@@ -48,6 +48,7 @@ LOCALEDEF_OBJS	= charmap.o charmap-dir.o ld-address.o ld-collate.o \
 		  ld-paper.o ld-telephone.o ld-time.o linereader.o \
 		  localedef.o locarchive.o locfile.o record-status.o \
 		  repertoire.o simple-hash.o xmalloc.o xstrdup.o \
+		  xasprintf.o \
 		  \
 		  argp-ba.o argp-eexst.o argp-fmtstream.o argp-help.o \
 		  argp-parse.o argp-pv.o argp-xinl.o error.o getopt.o \
@@ -105,6 +106,7 @@ repertoire.o: glibc/locale/programs/repertoire.c
 simple-hash.o: glibc/locale/programs/simple-hash.c
 xmalloc.o: glibc/locale/programs/xmalloc.c
 xstrdup.o: glibc/locale/programs/xstrdup.c
+xasprintf.o: glibc/locale/programs/xasprintf.c
 
 argp-ba.o: glibc/argp/argp-ba.c
 argp-eexst.o: glibc/argp/argp-eexst.c
