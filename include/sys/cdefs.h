@@ -64,3 +64,21 @@
 #  define __attribute_alloc_size__(...)
 # endif
 #endif
+
+#if __GNUC_PREREQ (10, 0)
+/* Designates a 1-based positional argument ref-index of pointer type
+   that can be used to access size-index elements of the pointed-to
+   array according to access mode, or at least one element when
+   size-index is not provided:
+     access (access-mode, <ref-index> [, <size-index>])  */
+#  define __attr_access(x) __attribute__ ((__access__ x))
+#  if __GNUC_PREREQ (11, 0)
+#    define __attr_access_none(argno) __attribute__ ((__access__ (__none__, argno)))
+#  else
+#    define __attr_access_none(argno)
+#  endif
+#else
+#  define __attr_access(x)
+#  define __attr_access_none(argno)
+#endif
+
