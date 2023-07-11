@@ -82,3 +82,19 @@
 #  define __attr_access_none(argno)
 #endif
 
+#if __GNUC_PREREQ (4, 3) || __glibc_has_attribute (__cold__)
+# define __COLD	__attribute__ ((__cold__))
+#else
+# define __COLD
+#endif
+
+/* All functions, except those with callbacks or those that
+   synchronize memory, are leaf functions.  */
+#if __GNUC_PREREQ (4, 6) && !defined _LIBC
+# define __LEAF , __leaf__
+# define __LEAF_ATTR __attribute__ ((__leaf__))
+#else
+# define __LEAF
+# define __LEAF_ATTR
+#endif
+
