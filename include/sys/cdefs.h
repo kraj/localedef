@@ -37,6 +37,23 @@
 #endif
 #endif
 
+#if !defined __glibc_has_attribute
+/* Older glibc on host might be missing __glibc_has_attribute added in glibc-2.34 with:
+   https://sourceware.org/git/?p=glibc.git;a=blobdiff;f=misc/sys/cdefs.h;h=8e244a77cf6271f09cbd26d18b1e07b1d1641404;hp=57ca262bdfb642bf4a945645532f2319ec1ff437;hb=c8ba52ab3350c334d6e34b1439a4c0c1431351f3;hpb=7dd416491e080456fc7742d884c520526509413e
+*/
+/* Compilers that lack __has_attribute may object to
+       #if defined __has_attribute && __has_attribute (...)
+   even though they do not need to evaluate the right-hand side of the &&.
+   Similarly for __has_builtin, etc.  */
+#if (defined __has_attribute \
+     && (!defined __clang_minor__ \
+         || 3 < __clang_major__ + (5 <= __clang_minor__)))
+# define __glibc_has_attribute(attr) __has_attribute (attr)
+#else
+# define __glibc_has_attribute(attr) 0
+#endif
+#endif
+
 #if !defined(__REDIRECT_NTH) && defined(__GNUC__) && __GNUC__ >= 2
 # ifdef __cplusplus
 #  define __REDIRECT_NTH(name, proto, alias) \
