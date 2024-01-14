@@ -102,6 +102,7 @@ linereader.o: glibc/locale/programs/linereader.c
 localedef.o: glibc/locale/programs/localedef.c
 locarchive.o: glibc/locale/programs/locarchive.c
 locfile.o: glibc/locale/programs/locfile.c
+md5.o: glibc/locale/programs/md5.c
 repertoire.o: glibc/locale/programs/repertoire.c
 simple-hash.o: glibc/locale/programs/simple-hash.c
 xmalloc.o: glibc/locale/programs/xmalloc.c
@@ -118,7 +119,6 @@ argp-xinl.o: glibc/argp/argp-xinl.c
 error.o: glibc/misc/error.c
 getopt.o: glibc/posix/getopt.c
 getopt1.o: glibc/posix/getopt1.c
-md5.o: glibc/crypt/md5.c
 obstack.o: glibc/malloc/obstack.c
 
 asprintf.o: $(srcdir)/asprintf.c
