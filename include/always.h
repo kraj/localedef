@@ -209,3 +209,7 @@ strsep (char **stringp, const char *delim)
 
 #include <stdbool.h>
 #include <stdint.h>
+
+#ifndef attribute_tls_model_ie
+#define attribute_tls_model_ie __attribute__ ((tls_model ("initial-exec")))
+#endif
